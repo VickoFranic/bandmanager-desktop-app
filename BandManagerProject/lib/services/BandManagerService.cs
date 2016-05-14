@@ -10,7 +10,7 @@ namespace BandManagerProject.lib.services
 {
     class BandManagerService
     {
-        private static string _baseUrl = "http://bandmanager.dev/api";
+        private static string _baseUrl = "http://bandmanager.vfdesign.org/api";
         private static WebClient webClient = new WebClient();
         private static List<User> users;
 
