@@ -10,7 +10,7 @@ namespace BandManagerProject.lib.services
 {
     class BandManagerService
     {
-        private static string _baseUrl = "http://bandmanager.vfdesign.org/api";
+        private static string _baseUrl = "http://bandmanager.dev/api";
         private static WebClient webClient = new WebClient();
         private static List<User> users;
 
@@ -41,6 +41,8 @@ namespace BandManagerProject.lib.services
             var response = webClient.DownloadString(_baseUrl + "/pages/" + user.facebook_id);
             List<Page> pages = JsonConvert.DeserializeObject<List<Page>>(response);
             return pages;
+
+            // genre, likes, name, page_id, picture
         }
     }
 }

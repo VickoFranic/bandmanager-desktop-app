@@ -23,10 +23,21 @@ namespace BandManagerProject
         public MainAppForm()
         {
             InitializeComponent();
-
             Facebook = new FacebookService();
 
+            Uri loginUrl = Facebook.generateLoginUrl();
+
+            WindowState = FormWindowState.Maximized;
+            Browser = new ChromiumWebBrowser(loginUrl.AbsoluteUri)
+            {
+                Dock = DockStyle.Fill,
+            };
+
+            this.panel1.Controls.Add(Browser);
+
+            Browser.AddressChanged += OnBrowserAddressChanged;
         }
+
 
         /**
          * Show user profile form
@@ -36,25 +47,14 @@ namespace BandManagerProject
             User user = Facebook.getFacebookUser(accessToken);
 
             userProfileForm = new UserProfileForm(user);
-            this.Visible = false;
+            
+     //       this.Visible = false;
             userProfileForm.ShowDialog();
 
             if (userProfileForm.DialogResult == System.Windows.Forms.DialogResult.Cancel)
             {
-                Browser.Dispose();
                 this.Close();
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Uri loginUrl = Facebook.generateLoginUrl();
-            Browser = new ChromiumWebBrowser(loginUrl.AbsoluteUri);
-
-            groupBox1.Controls.Clear();
-            groupBox1.Controls.Add(Browser);
-
-            Browser.AddressChanged += OnBrowserAddressChanged;
         }
 
         private void OnBrowserAddressChanged(object sender, AddressChangedEventArgs args)
@@ -63,7 +63,9 @@ namespace BandManagerProject
             string accessToken = Facebook.getAccessTokenFromCallback(callback);
 
             if (accessToken != String.Empty)
-                showUserProfile(accessToken);
+            {
+               this.InvokeOnUiThreadIfRequired(() => showUserProfile(accessToken));
+            }
         }
     }
 }

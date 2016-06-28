@@ -1,8 +1,6 @@
-﻿using CefSharp.WinForms;
-
-namespace BandManagerProject
+﻿namespace BandManagerProject
 {
-    partial class MainAppForm
+    partial class Gallery
     {
         /// <summary>
         /// Required designer variable.
@@ -30,36 +28,19 @@ namespace BandManagerProject
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1357, 650);
-            this.panel1.TabIndex = 0;
-            // 
-            // MainAppForm
+            // Gallery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1357, 650);
-            this.Controls.Add(this.panel1);
-            this.Name = "MainAppForm";
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(1471, 823);
+            this.Name = "Gallery";
+            this.Text = "Gallery";
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
-
-
-
-
     }
 }
-

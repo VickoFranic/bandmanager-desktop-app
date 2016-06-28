@@ -1,0 +1,127 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using Facebook;
+using Newtonsoft.Json;
+using BandManagerProject.lib.models;
+using BandManagerProject.lib.services;
+
+namespace BandManagerProject
+{
+    public partial class BandProfileForm : Form
+    {
+        Page _page;
+        User _user;
+        private FacebookService Facebook = new FacebookService();
+
+        public BandProfileForm(Page page, User user)
+        {
+            InitializeComponent();
+            WindowState = FormWindowState.Maximized;
+
+            _page = page;
+            _user = user;
+
+            getPageProfileFromFacebook();
+        }
+
+        /**
+         * Call Facebook API and get page profile details
+         */
+        private void getPageProfileFromFacebook()
+        {
+            JsonObject response = (JsonObject)Facebook.getPageProfile(_page, _user.access_token);
+
+            if (! String.IsNullOrEmpty(response.ToString()))
+            {
+                try
+                {
+                    string about = response["about"].ToString();
+                    string bio = response["bio"].ToString();
+                    string members = response["band_members"].ToString();
+                    string hometown = response["hometown"].ToString();
+                    string url = response["link"].ToString();
+
+                    label5.Text = _page.name;
+                    label6.Text = _page.genre;
+                    label7.Text = hometown;
+                    label9.Text = members;
+                    label3.Text = about;
+                    linkLabel1.Text = url;
+                    pictureBox2.Load(_page.picture);
+                }
+                catch (Exception)
+                {
+                    // Missing some field for Facebook page, ignore
+                }
+            }
+
+        }
+
+        /**
+         * Open page link in default browser
+         */
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(linkLabel1.Text);
+        }
+
+        /**
+         * Show all events for band
+         */
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                JsonObject response = (JsonObject)Facebook.getPageEvents(_page, _user.access_token);
+                dynamic data = JsonConvert.DeserializeObject(response.ToString());
+                dynamic events = data.events["data"];
+
+                foreach (var ev in events)
+                {
+                    Event eventItem = new Event();
+
+                    eventItem.description = ev.description;
+                    eventItem.name = ev.name;
+                    eventItem.start_time = ev.start_time;
+
+                    string[] item = new string[2];
+                    item[0] = eventItem.name;
+                    item[1] = eventItem.start_time;
+
+                    var lvi = new ListViewItem(item);
+                    lvi.Tag = eventItem;
+                    listView1.Items.Add(lvi);
+                }
+            }
+            catch(Exception)
+            {
+               // Some data missing for Facebook event, ignore
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            JsonObject response = (JsonObject)Facebook.getPagePhotos(_page, _user.access_token);
+            dynamic data = JsonConvert.DeserializeObject(response.ToString());
+            dynamic photos = data.photos["data"];
+
+            List<string> photosList = new List<string>();
+
+            foreach (var photo in photos)
+            {
+                photosList.Add(photo.picture.ToString());
+
+                Gallery gallery = new Gallery(photosList);
+
+                gallery.Show();
+            }
+        }
+
+    }
+}

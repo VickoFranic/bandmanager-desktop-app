@@ -98,5 +98,38 @@ namespace BandManagerProject.lib.services
             return String.Empty;
         }
 
+        /**
+         * Get page basic profile data from Facebook API
+         */
+        public JsonObject getPageProfile(Page page, string token)
+        {
+            Facebook.AccessToken = token;
+            JsonObject response = (JsonObject)Facebook.Get("/" + page.page_id + "?fields=about,bio,band_members,hometown,link");
+
+            return response;
+        }
+
+        /**
+         * Get page events from Facebook API
+         */
+        public JsonObject getPageEvents(Page page, string token)
+        {
+            Facebook.AccessToken = token;
+            JsonObject response = (JsonObject)Facebook.Get("/" + page.page_id + "?fields=events");
+
+            return response;
+        }
+
+       /**
+         * Get page photos from Facebook API
+         */
+        public JsonObject getPagePhotos(Page page, string token)
+        {
+            Facebook.AccessToken = token;
+            JsonObject response = (JsonObject)Facebook.Get("/" + page.page_id + "?fields=photos{picture}");
+
+            return response;
+        }
+
     }
 }

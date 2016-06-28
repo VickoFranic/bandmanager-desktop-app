@@ -37,6 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -105,25 +106,32 @@
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
+            this.columnHeader1,
+            this.columnHeader2});
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(385, 27);
+            this.listView1.Location = new System.Drawing.Point(402, 27);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(758, 567);
+            this.listView1.Size = new System.Drawing.Size(983, 567);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
             // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "Page name";
-            this.columnHeader1.Width = 751;
+            this.columnHeader1.Width = 369;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Page genre";
+            this.columnHeader2.Width = 404;
             // 
             // UserProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1195, 625);
+            this.ClientSize = new System.Drawing.Size(1416, 627);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
@@ -146,5 +154,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }
