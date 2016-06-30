@@ -62,14 +62,27 @@
     <Compile Include="BandProfileForm.Designer.cs">
       <DependentUpon>BandProfileForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Gallery.cs">
+    <Compile Include="EditUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Gallery.Designer.cs">
-      <DependentUpon>Gallery.cs</DependentUpon>
+    <Compile Include="EditUserForm.Designer.cs">
+      <DependentUpon>EditUserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EventDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EventDetailsForm.Designer.cs">
+      <DependentUpon>EventDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GalleryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GalleryForm.Designer.cs">
+      <DependentUpon>GalleryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="lib\models\Event.cs" />
     <Compile Include="lib\models\Page.cs" />
+    <Compile Include="lib\models\Picture.cs" />
     <Compile Include="lib\models\User.cs" />
     <Compile Include="lib\services\BandManagerService.cs" />
     <Compile Include="lib\services\FacebookService.cs" />
@@ -90,8 +103,14 @@
     <EmbeddedResource Include="BandProfileForm.resx">
       <DependentUpon>BandProfileForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Gallery.resx">
-      <DependentUpon>Gallery.cs</DependentUpon>
+    <EmbeddedResource Include="EditUserForm.resx">
+      <DependentUpon>EditUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EventDetailsForm.resx">
+      <DependentUpon>EventDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GalleryForm.resx">
+      <DependentUpon>GalleryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainAppForm.resx">
       <DependentUpon>MainAppForm.cs</DependentUpon>

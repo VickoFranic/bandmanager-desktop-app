@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Net;
@@ -43,6 +44,26 @@ namespace BandManagerProject.lib.services
             return pages;
 
             // genre, likes, name, page_id, picture
+        }
+
+        /**
+         * Send new user name to BandManager API and update value in database
+         * Reqeust method is POST
+         * @return string
+         */
+        public static string updateUserName(string newName, string facebook_id)
+        {
+            webClient.Headers["Content-Type"] = "application/x-www-form-urlencoded";
+
+            var data = new NameValueCollection();
+
+            data.Add("facebook_id", facebook_id);
+            data.Add("new_name", newName);
+
+            byte[] responseBytes = webClient.UploadValues(_baseUrl + "/user/name", "POST", data);
+            string responseString = Encoding.UTF8.GetString(responseBytes);
+
+            return responseString;
         }
     }
 }

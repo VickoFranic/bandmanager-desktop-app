@@ -52,7 +52,7 @@ namespace BandManagerProject
                     label7.Text = hometown;
                     label9.Text = members;
                     label3.Text = about;
-                    linkLabel1.Text = url;
+                    linkLabel1.Tag = url;
                     pictureBox2.Load(_page.picture);
                 }
                 catch (Exception)
@@ -68,7 +68,7 @@ namespace BandManagerProject
          */
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start(linkLabel1.Text);
+            System.Diagnostics.Process.Start(linkLabel1.Tag.ToString());
         }
 
         /**
@@ -98,6 +98,8 @@ namespace BandManagerProject
                     lvi.Tag = eventItem;
                     listView1.Items.Add(lvi);
                 }
+
+                listView1.Visible = true;
             }
             catch(Exception)
             {
@@ -111,16 +113,31 @@ namespace BandManagerProject
             dynamic data = JsonConvert.DeserializeObject(response.ToString());
             dynamic photos = data.photos["data"];
 
-            List<string> photosList = new List<string>();
+            List<Picture> photosList = new List<Picture>();
 
             foreach (var photo in photos)
             {
-                photosList.Add(photo.picture.ToString());
+                Picture pic = new Picture();
 
-                Gallery gallery = new Gallery(photosList);
+                pic.id = photo.id;
+                pic.created_ts = photo.created_time;
 
-                gallery.Show();
+                photosList.Add(pic);
             }
+
+            GalleryForm gallery = new GalleryForm(photosList, _user);
+            gallery.Show();
+        }
+
+        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ListViewHitTestInfo info = listView1.HitTest(e.X, e.Y);
+            ListViewItem item = info.Item;
+
+            Event ev = item.Tag as Event;
+
+            EventDetailsForm edf = new EventDetailsForm(ev);
+            edf.Show();
         }
 
     }

@@ -161,7 +161,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label9.Location = new System.Drawing.Point(1098, 48);
+            this.label9.Location = new System.Drawing.Point(1174, 48);
             this.label9.MaximumSize = new System.Drawing.Size(500, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(54, 17);
@@ -172,7 +172,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Meiryo UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label10.Location = new System.Drawing.Point(1097, 12);
+            this.label10.Location = new System.Drawing.Point(1173, 12);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(160, 25);
             this.label10.TabIndex = 8;
@@ -205,10 +205,10 @@
             this.linkLabel1.LinkColor = System.Drawing.Color.DodgerBlue;
             this.linkLabel1.Location = new System.Drawing.Point(13, 345);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(67, 20);
+            this.linkLabel1.Size = new System.Drawing.Size(79, 20);
             this.linkLabel1.TabIndex = 13;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Page url";
+            this.linkLabel1.Text = "Visit page";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // listView1
@@ -219,15 +219,17 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(254, 12);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(824, 320);
+            this.listView1.Size = new System.Drawing.Size(895, 320);
             this.listView1.TabIndex = 14;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.Visible = false;
+            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
             // 
             // eventName
             // 
             this.eventName.Text = "Event name";
-            this.eventName.Width = 250;
+            this.eventName.Width = 691;
             // 
             // Date
             // 

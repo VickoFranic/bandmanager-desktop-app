@@ -14,7 +14,7 @@ namespace BandManagerProject.lib.services
     class FacebookService
     {
         private FacebookClient Facebook;
-        private static WebClient webClient = new WebClient();
+        private WebClient webClient = new WebClient();
 
         public FacebookService()
         {
@@ -126,10 +126,18 @@ namespace BandManagerProject.lib.services
         public JsonObject getPagePhotos(Page page, string token)
         {
             Facebook.AccessToken = token;
-            JsonObject response = (JsonObject)Facebook.Get("/" + page.page_id + "?fields=photos{picture}");
+            JsonObject response = (JsonObject)Facebook.Get("/" + page.page_id + "?fields=photos");
 
             return response;
         }
 
+        public string getPictureUrl(string pictureId, string token)
+        {
+            string response = webClient.DownloadString("https://graph.facebook.com/" + pictureId + "?access_token=" + token + "&fields=source");
+            dynamic data = JsonConvert.DeserializeObject(response);
+            string url = data["source"];
+
+            return url;
+        }
     }
 }

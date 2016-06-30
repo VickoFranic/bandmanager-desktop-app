@@ -70,5 +70,20 @@ namespace BandManagerProject
 
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            EditUserForm euf = new EditUserForm(_user);
+
+            euf.ShowDialog();
+
+            if (euf.DialogResult == System.Windows.Forms.DialogResult.OK)
+            {
+                string name = euf.getNewName();
+                _user.name = name;
+                label3.Text = name;
+            }
+
+        }
     }
 }
